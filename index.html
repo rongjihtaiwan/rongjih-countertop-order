@@ -2,18 +2,19 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>榮際數位畫單工具 Alpha 0.12｜點選文字修改雙按鈕版</title>
+<title>榮際數位畫單工具 Alpha 0.12 之二版｜精簡施工模式</title>
 <style>
 :root{font-family:system-ui,-apple-system,"Noto Sans TC",sans-serif;color:#222;background:#f4f5f7}*{box-sizing:border-box}body{margin:0}header{background:#fff;border-bottom:1px solid #ddd;padding:16px 22px}h1{font-size:20px;margin:0 0 4px}header p{margin:0;color:#666;font-size:13px}.layout{display:grid;grid-template-columns:320px 1fr;gap:16px;padding:16px;max-width:1400px;margin:auto}.panel,.preview{background:#fff;border:1px solid #ddd;border-radius:12px;padding:16px}@media(min-width:851px){.panel{max-height:calc(100vh - 32px);overflow-y:auto;align-self:start;position:sticky;top:16px;overscroll-behavior:contain;scrollbar-gutter:stable}}.panel h2,.preview h2{font-size:16px;margin:0 0 12px}.group{padding-bottom:16px;margin-bottom:16px;border-bottom:1px solid #eee}.field{display:grid;grid-template-columns:1fr 110px;align-items:center;gap:10px;margin:10px 0;font-size:14px}input,select,textarea{width:100%;padding:8px;border:1px solid #c8cbd0;border-radius:7px;font:inherit;background:white}input:focus,select:focus,textarea:focus{outline:2px solid #b8d4ff;border-color:#6397e8}.unit{display:flex;align-items:center;gap:6px}.unit span{font-size:12px;color:#666;white-space:nowrap}.hint{font-size:12px;color:#666;line-height:1.5}.edge-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.edge{border:1px solid #ccd0d5;border-radius:8px;padding:9px 4px;background:#fff;cursor:pointer}.edge.active{background:#e9f1ff;border-color:#5b8fe0;color:#174c9b}.actions{display:flex;gap:8px;flex-wrap:wrap}.button{border:0;border-radius:8px;padding:10px 13px;font:inherit;cursor:pointer;background:#1f2937;color:#fff}.button.secondary{background:#eef0f3;color:#222;border:1px solid #d6d9de}.button:disabled{opacity:.4;cursor:not-allowed}.preview{min-width:0}.previewtop{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.canvaswrap{background:#f8f9fa;border:1px solid #e3e5e8;border-radius:8px;padding:8px;overflow:auto;text-align:center}canvas{display:block;background:white;max-width:100%;height:auto;margin:auto}.legend{font-size:12px;color:#666;margin-top:10px}.status{font-size:12px;color:#555;margin-top:10px;min-height:18px}.smallnote{font-size:12px;color:#8a4d12;background:#fff7e8;border:1px solid #f3dfb7;padding:9px;border-radius:8px;line-height:1.5}.symbolhelp{font-size:12px;color:#666;margin-top:6px}.subgroup{background:#f8f9fb;border:1px solid #e5e7eb;border-radius:8px;padding:10px;margin-top:10px}.warning{font-size:12px;color:#8a4d12;background:#fff7e8;border:1px solid #f3dfb7;padding:9px;border-radius:8px;line-height:1.5;margin-top:8px}.warning[hidden]{display:none}.mini-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.mini-actions .button{font-size:12px;padding:7px 9px}@media(max-width:850px){.layout{grid-template-columns:1fr}.field{grid-template-columns:1fr 120px}}
+.quick-locate-focus{outline:2px solid #5b8fe0 !important;outline-offset:2px;}
 </style></head>
 <body>
-<header><h1>榮際數位畫單工具 <span style="color:#777;font-weight:400">Alpha 0.12</span></h1><p>單機離線原型｜2D 簡化畫單｜輸出 PNG</p></header>
+<header><h1>榮際數位畫單工具 <span style="color:#777;font-weight:400">Alpha 0.12 之二版（精簡施工模式）</span></h1><p>單機離線原型｜2D 簡化畫單｜輸出 PNG</p></header>
 <div class="layout">
 <section class="panel">
-<div class="group"><h2>1. 檯面尺寸</h2>
+<div class="group" id="countertopSizeGroup"><h2>1. 檯面尺寸</h2>
 <label class="field"><span>檯面長度</span><span class="unit"><input id="length" type="number" min="1" max="500" step="0.1" value="100"><span>cm</span></span></label>
 <label class="field"><span>檯面深度</span><span class="unit"><input id="depth" type="number" min="1" max="300" step="0.1" value="61"><span>cm</span></span></label></div>
-<div class="group"><h2>2. 槽盆孔</h2>
+<div class="group" id="basinGroup"><h2>2. 槽盆孔</h2>
 <div style="display:flex;gap:14px;margin:8px 0 12px;font-size:14px"><label style="display:flex;align-items:center;gap:6px"><input style="width:auto" type="radio" name="basinShape" value="ellipse" checked> 橢圓形</label><label style="display:flex;align-items:center;gap:6px"><input style="width:auto" type="radio" name="basinShape" value="rect"> 矩形</label></div>
 <label class="field"><span>孔洞左右寬度</span><span class="unit"><input id="basinW" type="number" min="1" max="200" step="0.1" value="45"><span>cm</span></span></label>
 <label class="field"><span>孔洞前後深度</span><span class="unit"><input id="basinD" type="number" min="1" max="150" step="0.1" value="30"><span>cm</span></span></label>
@@ -25,7 +26,7 @@
 <label style="display:flex;align-items:center;gap:7px;margin-top:7px;font-size:14px"><input id="basinShowRight" type="checkbox" style="width:auto"> 顯示中心距右</label>
 <label style="display:flex;align-items:center;gap:7px;margin-top:7px;font-size:14px"><input id="basinShowFront" type="checkbox" style="width:auto" checked> 顯示中心距前</label>
 <label style="display:flex;align-items:center;gap:7px;margin-top:7px;font-size:14px"><input id="basinShowRear" type="checkbox" style="width:auto"> 顯示中心距後</label></div></div>
-<div class="group"><h2>3. 水龍頭孔</h2>
+<div class="group" id="tapGroup"><h2>3. 水龍頭孔</h2>
 <label style="display:flex;align-items:center;gap:8px;font-size:14px;margin:8px 0 12px"><input id="tapEnabled" type="checkbox" style="width:auto"> 啟用水龍頭孔</label>
 <div id="tapSettings" hidden>
 <label class="field"><span>孔洞形狀</span><select id="tapShape"><option value="circle" selected>圓形</option><option value="rect">矩形</option></select></label>
@@ -54,15 +55,17 @@
 <label style="display:flex;align-items:center;gap:7px;margin-top:7px;font-size:14px"><input id="tapShowRight" type="checkbox" style="width:auto"> 顯示中心距右</label>
 <label style="display:flex;align-items:center;gap:7px;margin-top:7px;font-size:14px"><input id="tapShowFront" type="checkbox" style="width:auto"> 顯示中心距前</label></div>
 </div><p class="hint">預設位置：依槽盆定位、左右偏移 0 cm，龍頭孔中心距檯面後側 8.5 cm。此為建議預設值，可依實際畫單調整；本版不檢查水龍頭孔是否超出檯面。</p></div>
-<div class="group"><h2>4. 邊緣加工標記</h2><p class="hint">先選擇邊緣，再選擇符號。符號意義目前作為佔位選項，正式加工定義請依榮際畫單規則核對。</p>
+<div class="group" id="edgeProcessingGroup"><h2>4. 邊緣加工標記</h2><p class="hint">先選擇邊緣，再選擇符號。符號意義目前作為佔位選項，正式加工定義請依榮際畫單規則核對。</p>
 <div class="edge-grid"><button class="edge active" data-edge="前側">前側</button><button class="edge" data-edge="左側">左側</button><button class="edge" data-edge="右側">右側</button><button class="edge" data-edge="後方">後方</button></div>
 <label class="field"><span>加工記號</span><select id="symbol"><option value="">無標記</option><option value="✖">✖</option><option value="△">△</option><option value="○">○</option><option value="○＋△">○＋△</option></select></label>
 <div class="actions"><button class="button secondary" id="apply">套用到所選邊緣</button><button class="button secondary" id="clearEdge">清除所選邊緣</button></div><p class="symbolhelp">目前標記：<span id="edgeSummary">前側：未設定；左側：未設定；右側：未設定</span></p></div>
 <div class="group"><h2>5. 備註（選填）</h2><textarea id="notes" rows="3" placeholder="輸入特殊需求或備註"></textarea></div>
 
-<div class="group" id="labelAdjustGroup"><h2>6. 定位尺寸文字調整</h2>
-<p class="hint">選擇一條定位尺寸文字，再調整字體大小與位置。定位虛線不會移動。</p>
+<div class="group" id="labelAdjustGroup"><h2>6. 文字／標註顯示調整</h2>
+<p class="hint">可調整檯面長度／深度標註、槽盆／龍頭定位尺寸，以及已設定的加工符號。只改變畫面顯示，不會改變實際尺寸、孔位或加工設定。孔洞名稱與孔洞尺寸文字固定不提供調整。</p>
 <label class="field"><span>選擇標註文字</span><select id="labelTarget">
+<option value="lengthDim">檯面長度標註</option>
+<option value="depthDim">檯面深度標註</option>
 <option value="basinLeft">一號槽盆孔中心距左</option>
 <option value="basinRight">一號槽盆孔中心距右</option>
 <option value="basinFront">一號槽盆孔中心距前</option>
@@ -71,6 +74,10 @@
 <option value="tapLeft">一號龍頭孔中心距左</option>
 <option value="tapRight">一號龍頭孔中心距右</option>
 <option value="tapFront">一號龍頭孔中心距前</option>
+<option value="markFront">前側加工符號</option>
+<option value="markLeft">左側加工符號</option>
+<option value="markRight">右側加工符號</option>
+<option value="markRear">後方加工符號</option>
 </select></label>
 <label class="field"><span>文字大小</span><span class="unit"><input id="labelFontSize" type="range" min="12" max="30" step="1" value="18"><span id="labelFontSizeValue">18 px</span></span></label>
 <label class="field"><span>水平位置</span><span class="unit"><input id="labelOffsetX" type="range" min="-100" max="100" step="1" value="0"><span id="labelOffsetXValue">0 px</span></span></label>
@@ -81,19 +88,25 @@
 <p class="status" id="status" role="status"></p>
 <div class="smallnote">Alpha 測試版提醒：請勿直接將輸出圖當成正式生產指示。加工符號規則、槽盆標準尺寸與驗收流程仍需由榮際確認。</div>
 </section>
-<section class="preview"><div class="previewtop"><h2>畫單預覽</h2><div class="actions"><button type="button" class="button" id="pickLabelMode">開啟「點選畫面文字修改」功能</button><span class="hint">單位：cm</span></div></div><div class="canvaswrap"><canvas id="drawing" width="1200" height="820" aria-label="檯面畫單預覽"></canvas></div><p class="legend">黑色外框：檯面｜橢圓／矩形：槽盆孔示意｜邊緣文字：暫用加工標記</p></section>
+<section class="preview"><div class="previewtop"><h2>畫單預覽</h2><div class="actions"><button type="button" class="button" id="pickLabelMode">文字外觀調整</button><button type="button" class="button secondary" id="quickLocateMode">快速定位設定欄位</button><button type="button" class="button secondary" id="dimensionDisplayMode">切換精簡施工模式</button><span class="hint">單位：cm</span></div></div><div class="canvaswrap"><canvas id="drawing" width="1200" height="820" aria-label="檯面畫單預覽"></canvas></div><p class="legend">黑色外框：檯面｜橢圓／矩形：槽盆孔示意｜邊緣文字：暫用加工標記</p></section>
 </div>
 <script>
 const $=id=>document.getElementById(id);const canvas=$('drawing'),ctx=canvas.getContext('2d');let tapLastGroup='edge';let selectedEdge='前側';let marks={'前側':'','左側':'','右側':'','後方':''};
 const labelDefaults=()=>({
+ lengthDim:{size:22,dx:0,dy:0}, depthDim:{size:22,dx:0,dy:0},
  basinLeft:{size:18,dx:0,dy:0}, basinRight:{size:18,dx:0,dy:0},
  basinFront:{size:18,dx:0,dy:0}, basinRear:{size:18,dx:0,dy:0},
  tapRear:{size:16,dx:0,dy:0}, tapLeft:{size:16,dx:0,dy:0},
- tapRight:{size:16,dx:0,dy:0}, tapFront:{size:16,dx:0,dy:0}
+ tapRight:{size:16,dx:0,dy:0}, tapFront:{size:16,dx:0,dy:0},
+ markFront:{size:25,dx:0,dy:0}, markLeft:{size:25,dx:0,dy:0},
+ markRight:{size:25,dx:0,dy:0}, markRear:{size:25,dx:0,dy:0}
 });
 let labelAdjustments=labelDefaults();
 let labelHitBoxes=[];
+let quickHitBoxes=[];
 let labelPickMode=false;
+let quickLocateModeOn=false;
+let compactConstructionMode=false;
 let pickedLabelId=null;
 function selectedLabel(){return $('labelTarget').value}
 function syncLabelControls(){
@@ -113,7 +126,7 @@ function labelText(id,text,x,y,opts={}){
  // Approximate the clickable text bounds in canvas coordinates.
  const top=py-a.size*0.9, bottom=py+a.size*0.3;
  const hit={id,left:left-5,right:left+width+5,top:top-4,bottom:bottom+4};
- labelHitBoxes.push(hit);
+ labelHitBoxes.push(hit);quickHitBoxes.push(hit);
  if(pickedLabelId===id){
    ctx.save();
    ctx.strokeStyle='#0b75d1';ctx.lineWidth=2;ctx.setLineDash([5,3]);
@@ -124,23 +137,39 @@ function labelText(id,text,x,y,opts={}){
  ctx.restore();
 }
 
+function rotatedLabelText(id,text,x,y,rotation,opts={}){const a=labelAdjustments[id],lx=a.dx,ly=a.dy,px=x+lx*Math.cos(rotation)-ly*Math.sin(rotation),py=y+lx*Math.sin(rotation)+ly*Math.cos(rotation);ctx.save();ctx.translate(px,py);ctx.rotate(rotation);ctx.font=(opts.weight||'normal')+' '+a.size+'px sans-serif';ctx.fillStyle=opts.color||'#34465c';ctx.textAlign=opts.align||'center';ctx.textBaseline='alphabetic';const width=ctx.measureText(text).width;const left=ctx.textAlign==='right'?-width:(ctx.textAlign==='center'?-width/2:0);const localTop=-a.size*0.9,localBottom=a.size*0.3;ctx.fillText(text,0,0);ctx.restore();const boxW=width+10,boxH=a.size*1.2+8,rotW=Math.abs(boxW*Math.cos(rotation))+Math.abs(boxH*Math.sin(rotation)),rotH=Math.abs(boxW*Math.sin(rotation))+Math.abs(boxH*Math.cos(rotation));const hit={id,left:px+left*Math.cos(rotation)-rotW/2-5,right:px+left*Math.cos(rotation)+rotW/2+5,top:py-rotH/2-5,bottom:py+rotH/2+5};labelHitBoxes.push(hit);quickHitBoxes.push(hit);if(pickedLabelId===id){ctx.save();ctx.strokeStyle='#0b75d1';ctx.lineWidth=2;ctx.setLineDash([5,3]);ctx.strokeRect(hit.left,hit.top,hit.right-hit.left,hit.bottom-hit.top);ctx.restore();}}
+function addQuickHitBox(id,left,top,right,bottom){quickHitBoxes.push({id,left:left-5,top:top-5,right:right+5,bottom:bottom+5});}
+function drawOutwardArrowHeads(x1,y1,x2,y2){
+ const dx=x2-x1,dy=y2-y1,len=Math.hypot(dx,dy);if(len<1)return;
+ const ux=dx/len,uy=dy/len,head=13,spread=Math.PI/6;
+ ctx.save();ctx.setLineDash([]);ctx.lineWidth=2.2;ctx.lineCap='round';ctx.strokeStyle='#555';
+ // First endpoint points away from the measured segment.
+ for(const [x,y,dir] of [[x1,y1,-1],[x2,y2,1]]){
+  const vx=ux*dir,vy=uy*dir;
+  ctx.beginPath();
+  ctx.moveTo(x,y);ctx.lineTo(x-vx*head*Math.cos(spread)-(-vy)*head*Math.sin(spread),y-vy*head*Math.cos(spread)-vx*head*Math.sin(spread));
+  ctx.moveTo(x,y);ctx.lineTo(x-vx*head*Math.cos(spread)+(-vy)*head*Math.sin(spread),y-vy*head*Math.cos(spread)+vx*head*Math.sin(spread));
+  ctx.stroke();
+ }
+ ctx.restore();
+}
 function val(id){return Number($(id).value)}function fmt(n){return Number(n.toFixed(1)).toString()}
 function setStatus(s){$('status').textContent=s}
 function edgeSummary(){ $('edgeSummary').textContent=['前側','左側','右側','後方'].map(e=>e+'：'+(marks[e]||'未設定')).join('；') }
-function drawEdgeMark(text,px,py,rotation=0){if(!text)return;ctx.save();ctx.translate(px,py);ctx.rotate(rotation);ctx.textAlign='left';ctx.textBaseline='middle';let cursor=0;for(const ch of text){if(ch==='○'){ctx.font='bold 50px sans-serif';ctx.fillText(ch,cursor,0);cursor+=ctx.measureText(ch).width-2;}else{ctx.font='bold 25px sans-serif';ctx.fillText(ch,cursor,0);cursor+=ctx.measureText(ch).width;}}ctx.restore()}
-function draw(){labelHitBoxes=[];const L=val('length'),D=val('depth'),bw=val('basinW'),bd=val('basinD'),cx=val('centerX'),cy=val('centerY');ctx.clearRect(0,0,canvas.width,canvas.height);ctx.fillStyle='#fff';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.fillStyle='#222';ctx.font='bold 30px sans-serif';ctx.textAlign='left';ctx.fillText('榮際數位畫單｜Alpha 0.12',70,55);ctx.font='20px sans-serif';ctx.fillStyle='#555';ctx.fillText('檯面尺寸：'+fmt(L)+' × '+fmt(D)+' cm',70,88);
+function drawEdgeMark(id,text,px,py,rotation=0){if(!text)return;const a=labelAdjustments[id],sx=px+a.dx,sy=py+a.dy,scaleFactor=a.size/25;ctx.save();ctx.translate(sx,sy);ctx.rotate(rotation);ctx.textAlign='left';ctx.textBaseline='middle';let cursor=0;for(const ch of text){if(ch==='○'){ctx.font='bold '+(50*scaleFactor)+'px sans-serif';ctx.fillText(ch,cursor,0);cursor+=ctx.measureText(ch).width-2*scaleFactor;}else{ctx.font='bold '+(25*scaleFactor)+'px sans-serif';ctx.fillText(ch,cursor,0);cursor+=ctx.measureText(ch).width;}}ctx.restore();const boxW=Math.max(24,cursor),boxH=55*scaleFactor,rotW=Math.abs(boxW*Math.cos(rotation))+Math.abs(boxH*Math.sin(rotation)),rotH=Math.abs(boxW*Math.sin(rotation))+Math.abs(boxH*Math.cos(rotation));const hit={id,left:sx-rotW/2-5,right:sx+rotW/2+5,top:sy-rotH/2-5,bottom:sy+rotH/2+5};labelHitBoxes.push(hit);quickHitBoxes.push(hit);if(pickedLabelId===id){ctx.save();ctx.strokeStyle='#0b75d1';ctx.lineWidth=2;ctx.setLineDash([5,3]);ctx.strokeRect(hit.left,hit.top,hit.right-hit.left,hit.bottom-hit.top);ctx.restore();}}
+function draw(){labelHitBoxes=[];quickHitBoxes=[];const L=val('length'),D=val('depth'),bw=val('basinW'),bd=val('basinD'),cx=val('centerX'),cy=val('centerY');ctx.clearRect(0,0,canvas.width,canvas.height);ctx.fillStyle='#fff';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.fillStyle='#222';ctx.font='bold 30px sans-serif';ctx.textAlign='left';ctx.fillText('榮際數位畫單｜Alpha 0.12 之二版'+(compactConstructionMode?'｜精簡施工圖':'｜完整標註'),70,55);ctx.font='20px sans-serif';ctx.fillStyle='#555';ctx.fillText('檯面尺寸：'+fmt(L)+' × '+fmt(D)+' cm',70,88);
 const maxW=920,maxH=500,scale=Math.min(maxW/L,maxH/D);const w=L*scale,h=D*scale,x=(canvas.width-w)/2,y=180+(maxH-h)/2;ctx.strokeStyle='#222';ctx.lineWidth=3;ctx.strokeRect(x,y,w,h);
 // Dimension lines
-ctx.strokeStyle='#555';ctx.lineWidth=1.5;ctx.fillStyle='#222';ctx.font='22px sans-serif';ctx.textAlign='center';ctx.beginPath();ctx.moveTo(x,y-25);ctx.lineTo(x+w,y-25);ctx.moveTo(x,y-34);ctx.lineTo(x,y-16);ctx.moveTo(x+w,y-34);ctx.lineTo(x+w,y-16);ctx.stroke();ctx.fillText(fmt(L)+' cm',x+w/2,y-38);
-ctx.beginPath();ctx.moveTo(x-28,y);ctx.lineTo(x-28,y+h);ctx.moveTo(x-37,y);ctx.lineTo(x-19,y);ctx.moveTo(x-37,y+h);ctx.lineTo(x-19,y+h);ctx.stroke();ctx.save();ctx.translate(x-48,y+h/2);ctx.rotate(-Math.PI/2);ctx.fillText(fmt(D)+' cm',0,0);ctx.restore();
+ctx.strokeStyle='#555';ctx.lineWidth=1.5;ctx.fillStyle='#222';ctx.font='22px sans-serif';ctx.textAlign='center';ctx.beginPath();ctx.moveTo(x,y-25);ctx.lineTo(x+w,y-25);ctx.moveTo(x,y-34);ctx.lineTo(x,y-16);ctx.moveTo(x+w,y-34);ctx.lineTo(x+w,y-16);ctx.stroke();labelText('lengthDim',fmt(L)+' cm',x+w/2,y-38,{align:'center',color:'#222'});
+ctx.beginPath();ctx.moveTo(x-28,y);ctx.lineTo(x-28,y+h);ctx.moveTo(x-37,y);ctx.lineTo(x-19,y);ctx.moveTo(x-37,y+h);ctx.lineTo(x-19,y+h);ctx.stroke();rotatedLabelText('depthDim',fmt(D)+' cm',x-48,y+h/2,-Math.PI/2,{align:'center',color:'#222'});
 // Basin center based on rear/top and left
 const bx=x+cx*scale,by=y+cy*scale,rx=bw*scale/2,ry=bd*scale/2;
 ctx.save();ctx.setLineDash([10,7]);ctx.lineWidth=1.5;ctx.strokeStyle='#8b929b';
-if($('basinShowLeft').checked){ctx.beginPath();ctx.moveTo(x,by);ctx.lineTo(bx,by);ctx.stroke();}
-if($('basinShowRight').checked){ctx.beginPath();ctx.moveTo(bx,by);ctx.lineTo(x+w,by);ctx.stroke();}
-if($('basinShowRear').checked){ctx.beginPath();ctx.moveTo(bx,y);ctx.lineTo(bx,by);ctx.stroke();}
-if($('basinShowFront').checked){ctx.beginPath();ctx.moveTo(bx,by);ctx.lineTo(bx,y+h);ctx.stroke();}
-ctx.restore();ctx.strokeStyle='#444';ctx.lineWidth=2.5;ctx.beginPath();if(document.querySelector('input[name="basinShape"]:checked').value==='ellipse'){ctx.ellipse(bx,by,rx,ry,0,0,Math.PI*2)}else{ctx.rect(bx-rx,by-ry,rx*2,ry*2)}ctx.stroke();
+if($('basinShowLeft').checked){ctx.beginPath();ctx.moveTo(x,by);ctx.lineTo(bx,by);ctx.stroke();if(compactConstructionMode)drawOutwardArrowHeads(x,by,bx,by);}
+if($('basinShowRight').checked){ctx.beginPath();ctx.moveTo(bx,by);ctx.lineTo(x+w,by);ctx.stroke();if(compactConstructionMode)drawOutwardArrowHeads(bx,by,x+w,by);}
+if($('basinShowRear').checked){ctx.beginPath();ctx.moveTo(bx,y);ctx.lineTo(bx,by);ctx.stroke();if(compactConstructionMode)drawOutwardArrowHeads(bx,y,bx,by);}
+if($('basinShowFront').checked){ctx.beginPath();ctx.moveTo(bx,by);ctx.lineTo(bx,y+h);ctx.stroke();if(compactConstructionMode)drawOutwardArrowHeads(bx,by,bx,y+h);}
+ctx.restore();ctx.strokeStyle='#444';ctx.lineWidth=2.5;ctx.beginPath();if(document.querySelector('input[name="basinShape"]:checked').value==='ellipse'){ctx.ellipse(bx,by,rx,ry,0,0,Math.PI*2)}else{ctx.rect(bx-rx,by-ry,rx*2,ry*2)}ctx.stroke();addQuickHitBox('basinHole',bx-rx,by-ry,bx+rx,by+ry);
 // Faucet hole: render only when enabled; no out-of-bounds validation in Alpha 0.11.
 let tapX=null,tapY=null,tapDia=0;
 if($('tapEnabled').checked){const tapShape=$('tapShape').value;tapDia=$('tapDiameter').value==='custom'?Number($('tapCustomDiameter').value):Number($('tapDiameter').value);if(!Number.isFinite(tapDia)||tapDia<=0)tapDia=3.5;const tapRectW=Math.max(0.1,val('tapRectW')),tapRectD=Math.max(0.1,val('tapRectD'));
@@ -149,33 +178,33 @@ if($('tapEnabled').checked){const tapShape=$('tapShape').value;tapDia=$('tapDiam
  const tx=x+tapX*scale,ty=y+tapY*scale;
   ctx.save();ctx.setLineDash([10,7]);ctx.lineWidth=1.5;ctx.strokeStyle='#1769aa';
   ctx.beginPath();ctx.moveTo(tx,y);ctx.lineTo(tx,ty);ctx.stroke();
-  if($('tapShowLeft').checked){ctx.beginPath();ctx.moveTo(x,ty);ctx.lineTo(tx,ty);ctx.stroke();}
-  if($('tapShowRight').checked){ctx.beginPath();ctx.moveTo(tx,ty);ctx.lineTo(x+w,ty);ctx.stroke();}
-  if($('tapShowFront').checked){ctx.beginPath();ctx.moveTo(tx,ty);ctx.lineTo(tx,y+h);ctx.stroke();}
+  if($('tapShowLeft').checked){ctx.beginPath();ctx.moveTo(x,ty);ctx.lineTo(tx,ty);ctx.stroke();if(compactConstructionMode)drawOutwardArrowHeads(x,ty,tx,ty);}
+  if($('tapShowRight').checked){ctx.beginPath();ctx.moveTo(tx,ty);ctx.lineTo(x+w,ty);ctx.stroke();if(compactConstructionMode)drawOutwardArrowHeads(tx,ty,x+w,ty);}
+  if($('tapShowFront').checked){ctx.beginPath();ctx.moveTo(tx,ty);ctx.lineTo(tx,y+h);ctx.stroke();if(compactConstructionMode)drawOutwardArrowHeads(tx,ty,tx,y+h);}
   ctx.restore();
-  ctx.beginPath();if(tapShape==='rect'){ctx.rect(tx-tapRectW*scale/2,ty-tapRectD*scale/2,tapRectW*scale,tapRectD*scale)}else{ctx.arc(tx,ty,Math.max(3,tapDia*scale/2),0,Math.PI*2)}ctx.strokeStyle='#1769aa';ctx.lineWidth=2.5;ctx.stroke();ctx.fillStyle='#1769aa';ctx.font='16px sans-serif';ctx.textAlign='left';const tapShapeLabel=tapShape==='rect'?'水龍頭孔 '+fmt(tapRectW)+' × '+fmt(tapRectD)+' cm':'水龍頭孔 Ø'+fmt(tapDia)+' cm';ctx.fillText(tapShapeLabel,tx+(tapShape==='rect'?tapRectW:tapDia)*scale/2+6,ty-6);
+  ctx.beginPath();if(tapShape==='rect'){ctx.rect(tx-tapRectW*scale/2,ty-tapRectD*scale/2,tapRectW*scale,tapRectD*scale)}else{ctx.arc(tx,ty,Math.max(3,tapDia*scale/2),0,Math.PI*2)}ctx.strokeStyle='#1769aa';ctx.lineWidth=2.5;ctx.stroke();ctx.fillStyle='#1769aa';ctx.font='16px sans-serif';ctx.textAlign='left';const tapShapeLabel=tapShape==='rect'?'水龍頭孔 '+fmt(tapRectW)+' × '+fmt(tapRectD)+' cm':'水龍頭孔 Ø'+fmt(tapDia)+' cm';ctx.fillText(tapShapeLabel,tx+(tapShape==='rect'?tapRectW:tapDia)*scale/2+6,ty-6);addQuickHitBox('tapHole',tx-(tapShape==='rect'?tapRectW*scale/2:Math.max(3,tapDia*scale/2)),ty-(tapShape==='rect'?tapRectD*scale/2:Math.max(3,tapDia*scale/2)),tx+(tapShape==='rect'?tapRectW*scale/2:Math.max(3,tapDia*scale/2)),ty+(tapShape==='rect'?tapRectD*scale/2:Math.max(3,tapDia*scale/2)));const tapLabelWidth=ctx.measureText(tapShapeLabel).width;addQuickHitBox('tapSizeLabel',tx+(tapShape==='rect'?tapRectW:tapDia)*scale/2+6,ty-22,tx+(tapShape==='rect'?tapRectW:tapDia)*scale/2+6+tapLabelWidth,ty+1);
   ctx.font='16px sans-serif';ctx.fillStyle='#1769aa';ctx.textAlign='left';
-  labelText('tapRear','一號龍頭孔中心距後 '+fmt(tapY)+' cm',tx+14,Math.max(y+18,ty-12),{color:'#1769aa'});
-  if($('tapShowLeft').checked)labelText('tapLeft','一號龍頭孔中心距左 '+fmt(tapX)+' cm',x+8,ty-10,{color:'#1769aa'});
-  if($('tapShowRight').checked)labelText('tapRight','一號龍頭孔中心距右 '+fmt(L-tapX)+' cm',x+w-8,ty-10,{color:'#1769aa',align:'right'});
-  if($('tapShowFront').checked)labelText('tapFront','一號龍頭孔中心距前 '+fmt(D-tapY)+' cm',tx+14,Math.min(y+h-8,ty+30),{color:'#1769aa'});
+  labelText('tapRear',compactConstructionMode?fmt(tapY)+' cm':'一號龍頭孔中心距後 '+fmt(tapY)+' cm',tx+14,Math.max(y+18,ty-12),{color:'#1769aa'});
+  if($('tapShowLeft').checked)labelText('tapLeft',compactConstructionMode?fmt(tapX)+' cm':'一號龍頭孔中心距左 '+fmt(tapX)+' cm',x+8,ty-10,{color:'#1769aa'});
+  if($('tapShowRight').checked)labelText('tapRight',compactConstructionMode?fmt(L-tapX)+' cm':'一號龍頭孔中心距右 '+fmt(L-tapX)+' cm',x+w-8,ty-10,{color:'#1769aa',align:'right'});
+  if($('tapShowFront').checked)labelText('tapFront',compactConstructionMode?fmt(D-tapY)+' cm':'一號龍頭孔中心距前 '+fmt(D-tapY)+' cm',tx+14,Math.min(y+h-8,ty+30),{color:'#1769aa'});
 }else{$('tapConflict').hidden=true;}
 ctx.setLineDash([7,5]);ctx.lineWidth=1;ctx.strokeStyle='#aaa';ctx.beginPath();ctx.moveTo(bx-12,by);ctx.lineTo(bx+12,by);ctx.moveTo(bx,by-12);ctx.lineTo(bx,by+12);ctx.stroke();ctx.setLineDash([]);
-ctx.font='19px sans-serif';ctx.fillStyle='#444';ctx.textAlign='center';ctx.fillText('槽盆孔 '+fmt(bw)+' × '+fmt(bd)+' cm',bx,by+ry+27);
+ctx.font='19px sans-serif';ctx.fillStyle='#444';ctx.textAlign='center';ctx.fillText('槽盆孔 '+fmt(bw)+' × '+fmt(bd)+' cm',bx,by+ry+27);const basinSizeWidth=ctx.measureText('槽盆孔 '+fmt(bw)+' × '+fmt(bd)+' cm').width;addQuickHitBox('basinSizeLabel',bx-basinSizeWidth/2,by+ry+27-20,bx+basinSizeWidth/2,by+ry+27+5);
 // Basin center-position labels are individually selectable; these labels do not change hole position.
 ctx.font='18px sans-serif';ctx.fillStyle='#34465c';ctx.textAlign='left';
-if($('basinShowLeft').checked)labelText('basinLeft','一號槽盆孔中心距左 '+fmt(cx)+' cm',x+8,by-12);
-if($('basinShowRight').checked)labelText('basinRight','一號槽盆孔中心距右 '+fmt(L-cx)+' cm',x+w-8,by-12,{align:'right'});
-if($('basinShowRear').checked)labelText('basinRear','一號槽盆孔中心距後 '+fmt(cy)+' cm',bx+12,y+(by-y)/2);
-if($('basinShowFront').checked)labelText('basinFront','一號槽盆孔中心距前 '+fmt(D-cy)+' cm',bx+12,Math.min(y+h-8,by+ry+35));
+if($('basinShowLeft').checked)labelText('basinLeft',compactConstructionMode?fmt(cx)+' cm':'一號槽盆孔中心距左 '+fmt(cx)+' cm',x+8,by-12);
+if($('basinShowRight').checked)labelText('basinRight',compactConstructionMode?fmt(L-cx)+' cm':'一號槽盆孔中心距右 '+fmt(L-cx)+' cm',x+w-8,by-12,{align:'right'});
+if($('basinShowRear').checked)labelText('basinRear',compactConstructionMode?fmt(cy)+' cm':'一號槽盆孔中心距後 '+fmt(cy)+' cm',bx+12,y+(by-y)/2);
+if($('basinShowFront').checked)labelText('basinFront',compactConstructionMode?fmt(D-cy)+' cm':'一號槽盆孔中心距前 '+fmt(D-cy)+' cm',bx+12,Math.min(y+h-8,by+ry+35));
 // Edge labels positioned outside outline
-ctx.fillStyle='#a33';ctx.textAlign='center';if(marks['前側'])drawEdgeMark(marks['前側'],x+w/2,y+h+42);if(marks['左側'])drawEdgeMark(marks['左側'],x-75,y+h/2,-Math.PI/2);if(marks['右側'])drawEdgeMark(marks['右側'],x+w+75,y+h/2,Math.PI/2);if(marks['後方'])drawEdgeMark(marks['後方'],x+w/2,y+28);
+ctx.fillStyle='#a33';ctx.textAlign='center';if(marks['前側'])drawEdgeMark('markFront',marks['前側'],x+w/2,y+h+42);if(marks['左側'])drawEdgeMark('markLeft',marks['左側'],x-75,y+h/2,-Math.PI/2);if(marks['右側'])drawEdgeMark('markRight',marks['右側'],x+w+75,y+h/2,Math.PI/2);if(marks['後方'])drawEdgeMark('markRear',marks['後方'],x+w/2,y+28);
 // Notes and footer
 const notes=$('notes').value.trim();ctx.textAlign='left';ctx.fillStyle='#222';ctx.font='19px sans-serif';ctx.fillText('加工標記：'+['前側','左側','右側','後方'].map(e=>e+' '+(marks[e]||'—')).join('　'),70,740);if(notes){ctx.font='18px sans-serif';ctx.fillText('備註：'+notes.slice(0,75),70,775)}ctx.font='15px sans-serif';ctx.fillStyle='#777';ctx.textAlign='right';ctx.fillText('示意畫單｜請確認加工規則與尺寸',1130,805);
 edgeSummary();}
 function valid(){let L=val('length'),D=val('depth'),bw=val('basinW'),bd=val('basinD'),cx=val('centerX'),cy=val('centerY');let vals=[L,D,bw,bd,cx,cy];if(vals.some(v=>!Number.isFinite(v)||v<0)||L<=0||D<=0||bw<=0||bd<=0){setStatus('請檢查尺寸：長、深及槽盆孔尺寸必須大於 0，定位尺寸不可為負數。');return false}if(bw>L||bd>D||cx-bw/2<0||cx+bw/2>L||cy-bd/2<0||cy+bd/2>D){setStatus('槽盆孔超出檯面範圍，請調整孔洞尺寸或中心位置。');return false}return true}
 document.querySelectorAll('input[name="basinShape"]').forEach(el=>el.addEventListener('change',draw));['length','depth','basinW','basinD','centerX','centerY','symbol','notes'].forEach(id=>$(id).addEventListener('input',()=>{draw();setStatus('')}));
-['basinShowLeft','basinShowRight','basinShowFront','basinShowRear','tapShowLeft','tapShowRight','tapShowFront'].forEach(id=>$(id).addEventListener('change',draw));document.querySelectorAll('[data-edge]').forEach(b=>b.addEventListener('click',()=>{selectedEdge=b.dataset.edge;document.querySelectorAll('[data-edge]').forEach(x=>x.classList.toggle('active',x===b));setStatus('目前選取：'+selectedEdge)}));$('apply').addEventListener('click',()=>{marks[selectedEdge]=$('symbol').value;draw();setStatus('已更新 '+selectedEdge+' 標記。')});$('clearEdge').addEventListener('click',()=>{marks[selectedEdge]='';draw();setStatus('已清除 '+selectedEdge+' 標記。')});$('export').addEventListener('click',()=>{if(!valid())return;draw();const a=document.createElement('a');a.download='榮際數位畫單_Alpha0.12_點選文字修改雙按鈕版.png';a.href=canvas.toDataURL('image/png');a.click();setStatus('已產生 PNG 圖片下載。請確認檔案已保存。')});$('reset').addEventListener('click',()=>{ $('length').value=100;$('depth').value=61;$('tapEnabled').checked=false;$('tapShape').value='circle';$('tapDiameter').value='3.5';$('tapCustomDiameter').value=3.5;$('tapRectW').value=3.5;$('tapRectD').value=3.5;$('tapCircleSettings').hidden=false;$('tapRectSettings').hidden=true;$('tapMode').value='basin';$('tapEdgeX').value=50;$('tapEdgeY').value=8.5;$('tapRelXDir').value='right';$('tapRelX').value=0;$('tapRelYDir').value='front';$('tapRelY').value=21.5;$('tapBasinEdgeX').value=50;$('tapBasinEdgeY').value=8.5;$('basinShowLeft').checked=true;$('basinShowRight').checked=false;$('basinShowFront').checked=true;$('basinShowRear').checked=false;$('tapShowLeft').checked=false;$('tapShowRight').checked=false;$('tapShowFront').checked=false;$('tapCustomRow').hidden=true;$('tapSettings').hidden=true;$('tapIndependent').hidden=true;$('tapBasin').hidden=false;$('tapConflict').hidden=true;tapLastGroup='edge';$('basinW').value=45;$('basinD').value=30;$('centerX').value=50;$('centerY').value=30;$('notes').value='';marks={'前側':'','左側':'','右側':'','後方':''};selectedEdge='前側';document.querySelectorAll('[data-edge]').forEach(x=>x.classList.toggle('active',x.dataset.edge===selectedEdge));$('symbol').value='';labelAdjustments=labelDefaults();syncLabelControls();draw();setStatus('已重設為範例數值。')});// Faucet-hole controls
+['basinShowLeft','basinShowRight','basinShowFront','basinShowRear','tapShowLeft','tapShowRight','tapShowFront'].forEach(id=>$(id).addEventListener('change',draw));document.querySelectorAll('[data-edge]').forEach(b=>b.addEventListener('click',()=>{selectedEdge=b.dataset.edge;document.querySelectorAll('[data-edge]').forEach(x=>x.classList.toggle('active',x===b));setStatus('目前選取：'+selectedEdge)}));$('apply').addEventListener('click',()=>{marks[selectedEdge]=$('symbol').value;draw();setStatus('已更新 '+selectedEdge+' 標記。')});$('clearEdge').addEventListener('click',()=>{marks[selectedEdge]='';draw();setStatus('已清除 '+selectedEdge+' 標記。')});$('export').addEventListener('click',()=>{if(!valid())return;draw();const a=document.createElement('a');a.download='榮際數位畫單_Alpha0.12之二版_'+(compactConstructionMode?'精簡施工圖':'完整標註')+'.png';a.href=canvas.toDataURL('image/png');a.click();setStatus('已產生 PNG 圖片下載。請確認檔案已保存。')});$('reset').addEventListener('click',()=>{ $('length').value=100;$('depth').value=61;$('tapEnabled').checked=false;$('tapShape').value='circle';$('tapDiameter').value='3.5';$('tapCustomDiameter').value=3.5;$('tapRectW').value=3.5;$('tapRectD').value=3.5;$('tapCircleSettings').hidden=false;$('tapRectSettings').hidden=true;$('tapMode').value='basin';$('tapEdgeX').value=50;$('tapEdgeY').value=8.5;$('tapRelXDir').value='right';$('tapRelX').value=0;$('tapRelYDir').value='front';$('tapRelY').value=21.5;$('tapBasinEdgeX').value=50;$('tapBasinEdgeY').value=8.5;$('basinShowLeft').checked=true;$('basinShowRight').checked=false;$('basinShowFront').checked=true;$('basinShowRear').checked=false;$('tapShowLeft').checked=false;$('tapShowRight').checked=false;$('tapShowFront').checked=false;$('tapCustomRow').hidden=true;$('tapSettings').hidden=true;$('tapIndependent').hidden=true;$('tapBasin').hidden=false;$('tapConflict').hidden=true;tapLastGroup='edge';$('basinW').value=45;$('basinD').value=30;$('centerX').value=50;$('centerY').value=30;$('notes').value='';marks={'前側':'','左側':'','右側':'','後方':''};selectedEdge='前側';document.querySelectorAll('[data-edge]').forEach(x=>x.classList.toggle('active',x.dataset.edge===selectedEdge));$('symbol').value='';labelAdjustments=labelDefaults();compactConstructionMode=false;updateDimensionDisplayButton();syncLabelControls();draw();setStatus('已重設為範例數值。')});// Faucet-hole controls
 function syncTapUI(){const enabled=$('tapEnabled').checked;$('tapSettings').hidden=!enabled;$('tapCustomRow').hidden=$('tapDiameter').value!=='custom';const isRect=$('tapShape').value==='rect';$('tapCircleSettings').hidden=isRect;$('tapRectSettings').hidden=!isRect;const basin=$('tapMode').value==='basin';$('tapIndependent').hidden=basin;$('tapBasin').hidden=!basin;draw();}
 $('tapEnabled').addEventListener('change',syncTapUI);$('tapDiameter').addEventListener('change',syncTapUI);$('tapShape').addEventListener('change',syncTapUI);$('tapMode').addEventListener('change',()=>{tapLastGroup='edge';syncTapUI()});
 ['tapCustomDiameter','tapRectW','tapRectD','tapEdgeX','tapEdgeY','tapRelX','tapRelY','tapBasinEdgeX','tapBasinEdgeY','tapRelXDir','tapRelYDir'].forEach(id=>$(id).addEventListener('input',()=>{if(['tapRelX','tapRelY','tapRelXDir','tapRelYDir'].includes(id))tapLastGroup='basin';else if(['tapBasinEdgeX','tapBasinEdgeY'].includes(id))tapLastGroup='edge';draw();}));
@@ -186,41 +215,94 @@ $('labelFontSize').addEventListener('input',()=>{labelAdjustments[selectedLabel(
 $('labelOffsetX').addEventListener('input',()=>{labelAdjustments[selectedLabel()].dx=Number($('labelOffsetX').value);syncLabelControls();draw();});
 $('labelOffsetY').addEventListener('input',()=>{labelAdjustments[selectedLabel()].dy=Number($('labelOffsetY').value);syncLabelControls();draw();});
 $('resetOneLabel').addEventListener('click',()=>{labelAdjustments[selectedLabel()]=labelDefaults()[selectedLabel()];syncLabelControls();draw();setStatus('已重設所選定位尺寸文字。');});
-function updateLabelPickButtons(){
- const top=$('pickLabelMode');
- const inline=$('pickLabelModeInline');
- top.textContent=labelPickMode?'取消文字選取模式':'開啟「點選畫面文字修改」功能';
- inline.textContent=labelPickMode?'取消文字選取':'點選文字修改';
- top.classList.toggle('secondary',labelPickMode);
- inline.classList.toggle('secondary',labelPickMode);
- canvas.style.cursor=labelPickMode?'crosshair':'default';
+function updateModeButtons(){
+ const top=$('pickLabelMode'), inline=$('pickLabelModeInline'), quick=$('quickLocateMode');
+ top.textContent=labelPickMode?'退出文字外觀調整':'文字外觀調整';
+ inline.textContent=labelPickMode?'退出文字外觀調整':'文字外觀調整';
+ top.classList.toggle('secondary',labelPickMode); inline.classList.toggle('secondary',labelPickMode);
+ quick.textContent=quickLocateModeOn?'退出快速定位設定欄位':'快速定位設定欄位';
+ quick.classList.toggle('secondary',!quickLocateModeOn);
+ canvas.style.cursor=(labelPickMode||quickLocateModeOn)?'crosshair':'default';
 }
 function toggleLabelPickMode(){
  labelPickMode=!labelPickMode;
- updateLabelPickButtons();
- setStatus(labelPickMode?'文字選取模式已開啟：請點選槽盆孔或龍頭孔的定位尺寸文字。':'已退出文字選取模式。');
+ if(labelPickMode)quickLocateModeOn=false;
+ updateModeButtons();
+ setStatus(labelPickMode?'文字外觀調整已開啟：請點選可調整的尺寸標註、定位文字或已設定的加工符號。':'已退出文字外觀調整模式。');
+}
+function toggleQuickLocateMode(){
+ quickLocateModeOn=!quickLocateModeOn;
+ if(quickLocateModeOn)labelPickMode=false;
+ updateModeButtons();
+ setStatus(quickLocateModeOn?'快速定位設定欄位已開啟：可連續點選圖面項目，再次按此按鈕退出。':'已退出快速定位設定欄位模式。');
 }
 $('pickLabelMode').addEventListener('click',toggleLabelPickMode);
 $('pickLabelModeInline').addEventListener('click',toggleLabelPickMode);
+$('quickLocateMode').addEventListener('click',toggleQuickLocateMode);
+function updateDimensionDisplayButton(){
+ const b=$('dimensionDisplayMode');
+ b.textContent=compactConstructionMode?'切換完整標註模式':'切換精簡施工模式';
+ b.classList.toggle('secondary',!compactConstructionMode);
+}
+$('dimensionDisplayMode').addEventListener('click',()=>{
+ compactConstructionMode=!compactConstructionMode;
+ updateDimensionDisplayButton();
+ draw();
+ setStatus(compactConstructionMode?'已切換至精簡施工圖：定位文字已簡化，定位虛線加上兩端朝外箭頭。':'已切換至完整標註模式：恢復完整定位文字與原有定位虛線。');
+});
+function locateField(id){
+ const map={
+  lengthDim:{group:'countertopSizeGroup',field:'length',message:'檯面長度'},
+  depthDim:{group:'countertopSizeGroup',field:'depth',message:'檯面深度'},
+  basinLeft:{group:'basinGroup',field:'centerX',message:'槽盆孔中心距左側'},
+  basinRight:{group:'basinGroup',field:'centerX',message:'槽盆孔中心距右側'},
+  basinRear:{group:'basinGroup',field:'centerY',message:'槽盆孔中心距後側'},
+  basinFront:{group:'basinGroup',field:'centerY',message:'槽盆孔中心距前側'},
+  basinHole:{group:'basinGroup',field:'basinW',message:'槽盆孔尺寸與定位'},
+  basinSizeLabel:{group:'basinGroup',field:'basinW',message:'槽盆孔尺寸'},
+  tapRear:{group:'tapGroup',field:'tapBasinEdgeY',message:'水龍頭孔定位設定'},
+  tapLeft:{group:'tapGroup',field:'tapBasinEdgeX',message:'水龍頭孔定位設定'},
+  tapRight:{group:'tapGroup',field:'tapBasinEdgeX',message:'水龍頭孔定位設定'},
+  tapFront:{group:'tapGroup',field:'tapBasinEdgeY',message:'水龍頭孔定位設定'},
+  tapHole:{group:'tapGroup',field:'tapEnabled',message:'水龍頭孔設定'},
+  tapSizeLabel:{group:'tapGroup',field:'tapEnabled',message:'水龍頭孔形狀與尺寸'},
+  markFront:{group:'edgeProcessingGroup',field:'symbol',edge:'前側',message:'前側加工標記'},
+  markLeft:{group:'edgeProcessingGroup',field:'symbol',edge:'左側',message:'左側加工標記'},
+  markRight:{group:'edgeProcessingGroup',field:'symbol',edge:'右側',message:'右側加工標記'},
+  markRear:{group:'edgeProcessingGroup',field:'symbol',edge:'後方',message:'後方加工標記'}
+ };
+ const target=map[id];
+ if(!target)return false;
+ if(target.edge){selectedEdge=target.edge;document.querySelectorAll('[data-edge]').forEach(b=>b.classList.toggle('active',b.dataset.edge===selectedEdge));$('symbol').value=marks[selectedEdge]||'';}
+ const group=$(target.group);if(group)group.scrollIntoView({behavior:'smooth',block:'start'});
+ document.querySelectorAll('.quick-locate-focus').forEach(el=>el.classList.remove('quick-locate-focus'));
+ let fieldId=target.field;
+ if(id.startsWith('tap')&&$('tapMode').value==='independent'){if(id==='tapRear'||id==='tapFront')fieldId='tapEdgeY';else if(id==='tapLeft'||id==='tapRight')fieldId='tapEdgeX';}
+ const field=$(fieldId);if(field){field.focus({preventScroll:true});if(field.type==='number'||field.tagName==='SELECT')field.classList.add('quick-locate-focus');}
+ setStatus('已定位至「'+target.message+'」設定欄位。快速定位模式仍保持開啟，可繼續點選其他項目。');
+ return true;
+}
 canvas.addEventListener('click',event=>{
- if(!labelPickMode)return;
+ if(!labelPickMode&&!quickLocateModeOn)return;
  const rect=canvas.getBoundingClientRect();
  const px=(event.clientX-rect.left)*(canvas.width/rect.width);
  const py=(event.clientY-rect.top)*(canvas.height/rect.height);
- const hit=[...labelHitBoxes].reverse().find(r=>px>=r.left&&px<=r.right&&py>=r.top&&py<=r.bottom);
- if(!hit){
-   setStatus('沒有選到可調整的定位尺寸文字，請點在文字上再試一次。');
-   return;
+ if(quickLocateModeOn){
+   const hit=[...quickHitBoxes].reverse().find(r=>px>=r.left&&px<=r.right&&py>=r.top&&py<=r.bottom);
+   if(!hit){setStatus('沒有辨識到可定位的圖面項目，請點選尺寸文字、孔洞或已設定的加工符號。');return;}
+   locateField(hit.id);return;
  }
+ const hit=[...labelHitBoxes].reverse().find(r=>px>=r.left&&px<=r.right&&py>=r.top&&py<=r.bottom);
+ if(!hit){setStatus('沒有選到可調整的標註或已設定的加工符號；孔洞名稱與尺寸文字為固定防呆項目。請點在可調整項目上再試一次。');return;}
  $('labelTarget').value=hit.id;
  pickedLabelId=hit.id;
  syncLabelControls();
  labelPickMode=false;
- updateLabelPickButtons();
+ updateModeButtons();
  draw();
  $('labelAdjustGroup').scrollIntoView({behavior:'smooth',block:'center'});
- setStatus('已選取「'+$('labelTarget').selectedOptions[0].textContent+'」，可在左側調整文字大小與位置。');
+ setStatus('已選取「'+$('labelTarget').selectedOptions[0].textContent+'」，可在左側調整顯示大小與位置；實際尺寸、孔位及加工設定不變。');
 });
 $('labelTarget').addEventListener('change',()=>{pickedLabelId=null;draw();});
-syncLabelControls();draw();
+syncLabelControls();updateModeButtons();updateDimensionDisplayButton();draw();
 </script></body></html>
